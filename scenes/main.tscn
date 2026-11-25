@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/block_prompt.tscn" id="2_block"]
+[ext_resource type="PackedScene" path="res://scenes/punch_prompt.tscn" id="3_punch"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ArenaBG" type="ColorRect" parent="BackgroundLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0941176, 0.105882, 0.141176, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(360, 640)
+
+[node name="Opponent" type="Node2D" parent="."]
+position = Vector2(360, 560)
+
+[node name="Body" type="ColorRect" parent="Opponent"]
+offset_left = -110.0
+offset_top = -180.0
+offset_right = 110.0
+offset_bottom = 180.0
+color = Color(0.784314, 0.294118, 0.294118, 1)
+
+[node name="BlockPrompt" parent="." instance=ExtResource("2_block")]
+
+[node name="PunchPrompt" parent="." instance=ExtResource("3_punch")]
+
+[node name="ActionTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="StatusLabel" type="Label" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 48.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+
+[connection signal="blocked" from="BlockPrompt" to="." method="_on_block_prompt_blocked"]
+[connection signal="missed" from="BlockPrompt" to="." method="_on_block_prompt_missed"]
+[connection signal="missed" from="PunchPrompt" to="." method="_on_punch_prompt_missed"]
+[connection signal="punched" from="PunchPrompt" to="." method="_on_punch_prompt_punched"]
+[connection signal="timeout" from="ActionTimer" to="." method="_on_action_timer_timeout"]

@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/block_prompt.gd" id="1_block"]
+
+[node name="BlockPrompt" type="Node2D"]
+visible = false
+script = ExtResource("1_block")
+
+[node name="OuterRing" type="Line2D" parent="."]
+closed = true
+width = 8.0
+default_color = Color(1, 0.2, 0.2, 1)
+
+[node name="FillCircle" type="Polygon2D" parent="."]
+scale = Vector2(1e-05, 1e-05)
+color = Color(1, 0.2, 0.2, 0.666667)
