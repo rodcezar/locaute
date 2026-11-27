@@ -1,16 +1,19 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://deeh4ae4pmg71"]
 
-[ext_resource type="Script" path="res://scripts/main.gd" id="1_main"]
+[ext_resource type="Script" uid="uid://cvyplp2vas5cc" path="res://scripts/main.gd" id="1_main"]
 [ext_resource type="PackedScene" path="res://scenes/block_prompt.tscn" id="2_block"]
 [ext_resource type="PackedScene" path="res://scenes/punch_prompt.tscn" id="3_punch"]
 
-[node name="Main" type="Node2D"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sugp2"]
+load_path = "res://.godot/imported/opponent_stub.png-c1bba95546c3e8500bfc2f0c45cf1e23.ctex"
+
+[node name="Main" type="Node2D" unique_id=1501449309]
 script = ExtResource("1_main")
 
-[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+[node name="BackgroundLayer" type="CanvasLayer" parent="." unique_id=1683184928]
 layer = -1
 
-[node name="ArenaBG" type="ColorRect" parent="BackgroundLayer"]
+[node name="ArenaBG" type="ColorRect" parent="BackgroundLayer" unique_id=2060536762]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,29 +21,35 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0941176, 0.105882, 0.141176, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1789230478]
 position = Vector2(360, 640)
 
-[node name="Opponent" type="Node2D" parent="."]
+[node name="Opponent" type="Node2D" parent="." unique_id=1024112228]
 position = Vector2(360, 560)
 
-[node name="Body" type="ColorRect" parent="Opponent"]
+[node name="Sprite2D" type="Sprite2D" parent="Opponent" unique_id=1657855729]
+position = Vector2(15.500015, 25.500023)
+scale = Vector2(2.568182, 2.6916666)
+texture = SubResource("CompressedTexture2D_sugp2")
+
+[node name="Body" type="ColorRect" parent="Opponent" unique_id=651248014]
+visible = false
 offset_left = -110.0
 offset_top = -180.0
 offset_right = 110.0
 offset_bottom = 180.0
 color = Color(0.784314, 0.294118, 0.294118, 1)
 
-[node name="BlockPrompt" parent="." instance=ExtResource("2_block")]
+[node name="BlockPrompt" parent="." unique_id=1298624113 instance=ExtResource("2_block")]
 
-[node name="PunchPrompt" parent="." instance=ExtResource("3_punch")]
+[node name="PunchPrompt" parent="." unique_id=1081805024 instance=ExtResource("3_punch")]
 
-[node name="ActionTimer" type="Timer" parent="."]
+[node name="ActionTimer" type="Timer" parent="." unique_id=1417308571]
 one_shot = true
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=189459128]
 
-[node name="StatusLabel" type="Label" parent="HUD"]
+[node name="StatusLabel" type="Label" parent="HUD" unique_id=1652793357]
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 48.0
